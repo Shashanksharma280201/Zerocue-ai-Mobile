@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "ZeroCue",
+    "slug": "zerocue-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "zerocue",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#A8E6CF"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.zerocue.mobile"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#A8E6CF"
+      },
+      "package": "com.zerocue.mobile",
+      "permissions": [
+        "CAMERA"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow ZeroCue to access your camera to scan barcodes"
+        }
+      ],
+      "expo-speech-recognition"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "7bba9b92-03b7-443c-b769-5a566944dd4c"
+      }
+    },
+    "owner": "shanks28"
+  }
+}

@@ -1,0 +1,70 @@
+📱 PERSONALIZATION IDEAS FOR SCANPAY HOME SCREEN
+==================================================
+
+🎯 USER BEHAVIOR BASED
+- "Recommended for You" - Based on browsing/scan history
+- "Continue Shopping" - Recently viewed items
+- "Your Size Available" - Filter by user's saved sizes
+- "Brands You Follow" - Curated feed from favorite brands
+
+🛍️ SHOPPING PREFERENCES
+- "Frequently Bought Together" - Smart bundling
+- "Items You Saved" - Quick access to bookmarked products
+- "Similar to Your Purchases" - ML-based recommendations
+- "Complete Your Look" - Outfit suggestions from cart items
+
+📍 LOCATION BASED
+- "Near You Right Now" - Products at nearby stores
+- "Available at [Mall Name]" - Store-specific inventory
+- "Picked Up in Your Area" - Local trending items
+- "Reserve & Pickup Today" - Same-day availability
+
+💰 BUDGET & DEALS
+- "Under ₹1000" - Price-filtered sections
+- "Your Budget Picks" - Based on avg. spend
+- "Flash Deals for You" - Personalized limited offers
+- "Price Drop Alerts" - Saved items now on sale
+
+👥 SOCIAL PERSONALIZATION
+- "Friends are Shopping" - Real-time friend activity
+- "Trending in Mumbai" - City-based trends (if user in Mumbai)
+- "Your Style Community" - Similar users' picks
+- "Influencers You Follow" - Curated by followed accounts
+
+⏰ TIME-BASED
+- "Weekend Wardrobe" - Thu-Fri recommendations
+- "Festival Collection" - Seasonal/occasion-based
+- "New This Week" - Fresh arrivals since last visit
+- "Quick Reorder" - Repurchase favorites
+
+🎨 STYLE PROFILE
+- "Minimalist Picks" - If user prefers minimal style
+- "Boho Collection" - Style preference based
+- "Formal Essentials" - Work/casual preference
+- "Color Palette: Earth Tones" - Preferred colors
+
+📊 SMART SECTIONS (Dynamic)
+- Auto-hide sections user never taps
+- Reorder sections by engagement
+- A/B test section titles
+- Adaptive card sizes based on interaction
+
+🔔 PERSONALIZED NOTIFICATIONS
+- "Item You Saved is Back in Stock"
+- "Price Dropped on 3 Items You Liked"
+- "New Arrivals from Zara" (if user follows Zara)
+- "Flash Sale Starting in 1 Hour"
+
+🎁 GAMIFICATION
+- "Unlock 10% Off - Scan 5 More Items"
+- "Your Style Streak: 7 Days"
+- "Points Balance: 450" - Loyalty integration
+- "Level Up: Fashion Explorer → Trendsetter"
+
+==================================================
+EASIEST TO IMPLEMENT FIRST:
+1. "Recently Viewed" - Track in local storage
+2. "Your Size Available" - Filter by saved size preference
+3. "Near You" - Use device location + store data
+4. "Items You Saved" - Show bookmarked products
+5. "Continue Shopping" - Resume browsing session
