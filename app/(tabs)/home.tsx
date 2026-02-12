@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { Colors, Spacing, FontSize, FontWeight, BorderRadius, Shadows } from '../../constants/Colors';
 import { useRouter } from 'expo-router';
+import { ScreenGradient } from '../../components/ui/GradientBackground';
 
 const { width } = Dimensions.get('window');
 
@@ -11,7 +12,7 @@ export default function ShopHome() {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
+    <ScreenGradient style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <SafeAreaView edges={['top']}>
@@ -136,19 +137,18 @@ export default function ShopHome() {
           </TouchableOpacity>
         </View>
 
-        <View style={{ height: 40 }} />
+        <View style={{ height: 120 }} />
       </ScrollView>
-    </View>
+    </ScreenGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
   },
   header: {
-    backgroundColor: Colors.white,
+    backgroundColor: 'transparent',
   },
   headerContent: {
     flexDirection: 'row',

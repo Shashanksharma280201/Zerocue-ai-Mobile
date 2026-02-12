@@ -14,6 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
+import { ScreenGradient } from '../../components/ui/GradientBackground';
 
 import { Card } from '../../components/ui/Card';
 import { LoadingSpinner } from '../../components/ui/LoadingSpinner';
@@ -40,7 +41,12 @@ export default function WardrobeScreen() {
       await setSavedOutfits(data);
     } catch (error: any) {
       console.error('Load outfits error:', error);
-      Alert.alert('Error', error.error || 'Failed to load saved outfits');
+      // Only show alert for unexpected errors, not for empty wardrobe
+      if (error.status_code !== 500) {
+        Alert.alert('Error', error.error || 'Failed to load saved outfits');
+      }
+      // Set empty array as fallback
+      setOutfits([]);
     } finally {
       setIsLoading(false);
       setIsRefreshing(false);
@@ -189,7 +195,7 @@ export default function WardrobeScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <ScreenGradient style={styles.container}>
       {renderHeader()}
       <FlatList
         data={outfits}
@@ -211,19 +217,19 @@ export default function WardrobeScreen() {
         ListEmptyComponent={renderEmptyState}
         showsVerticalScrollIndicator={false}
       />
-    </View>
+    </ScreenGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background,
   },
 
   // Header Styles
   headerContainer: {
-    backgroundColor: Colors.white,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backdropFilter: 'blur(10px)',
     ...Shadows.small,
   },
   header: {
@@ -259,7 +265,7 @@ const styles = StyleSheet.create({
   // Content Styles
   content: {
     padding: Spacing.lg,
-    paddingBottom: Spacing.xxl + Spacing.lg,
+    paddingBottom: 120, // Extra padding for floating navbar
   },
   emptyContent: {
     flex: 1,

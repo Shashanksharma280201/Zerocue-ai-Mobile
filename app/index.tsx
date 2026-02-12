@@ -2,13 +2,15 @@ import { useEffect } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { Redirect } from 'expo-router';
 import { useAuthStore } from '../lib/stores/authStore';
+import { useAvatarStore } from '../lib/stores/avatarStore';
 import { Colors } from '../constants/Colors';
 
 // 🔓 BYPASS AUTH FOR TESTING - Set to false to re-enable authentication
-const BYPASS_AUTH_FOR_TESTING = true;
+const BYPASS_AUTH_FOR_TESTING = false;
 
 export default function Index() {
   const { user, session, currentStore, initialized, initialize } = useAuthStore();
+  const { hasAvatar } = useAvatarStore();
 
   useEffect(() => {
     // Initialize auth state on mount
@@ -26,9 +28,14 @@ export default function Index() {
     }
   }, [initialized, session, user, currentStore]);
 
-  // 🔓 BYPASS AUTH - Skip directly to home for testing
+  // 🔓 BYPASS AUTH - Check avatar first, then go to home
   if (BYPASS_AUTH_FOR_TESTING) {
-    console.log('🔓 BYPASSING AUTH - Going directly to home');
+    console.log('🔓 BYPASSING AUTH - Checking avatar status');
+    if (!hasAvatar()) {
+      console.log('➡️ No avatar - redirecting to create-avatar');
+      return <Redirect href="/(onboarding)/create-avatar" />;
+    }
+    console.log('➡️ Has avatar - going to home');
     return <Redirect href="/(tabs)/home" />;
   }
 

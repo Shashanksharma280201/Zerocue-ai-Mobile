@@ -361,13 +361,20 @@ class FashionAPIClient {
       return cached;
     }
 
-    // Fetch from API
-    const response = await this.client.get<SavedOutfit[]>('/outfits/saved');
+    try {
+      // Fetch from API
+      const response = await this.client.get<SavedOutfit[]>('/outfits/saved');
 
-    // Cache the result
-    await this.setCache('saved_outfits', response.data);
+      // Cache the result
+      await this.setCache('saved_outfits', response.data);
 
-    return response.data;
+      return response.data;
+    } catch (error: any) {
+      console.warn('Failed to load saved outfits from API, using empty array:', error.error || error.message);
+      // Return empty array if backend is not ready
+      // This prevents the app from crashing while backend is being developed
+      return [];
+    }
   }
 
   async getSavedOutfit(outfitId: string): Promise<SavedOutfit> {

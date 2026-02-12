@@ -4,6 +4,7 @@ import { Colors, FontSize } from '../../constants/Colors';
 import { View, StyleSheet } from 'react-native';
 import { useEffect } from 'react';
 import { useAuthStore } from '../../lib/stores/authStore';
+import { FloatingTabBar } from '../../components/navigation/FloatingTabBar';
 
 export default function TabLayout() {
   const router = useRouter();
@@ -19,12 +20,21 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors.text,
-        tabBarInactiveTintColor: Colors.textSecondary,
-        tabBarStyle: styles.tabBar,
-        tabBarShowLabel: true,
-        tabBarLabelStyle: styles.tabBarLabel,
         headerShown: false,
+        tabBarActiveTintColor: Colors.primary,
+        tabBarInactiveTintColor: Colors.textSecondary,
+        tabBarStyle: {
+          backgroundColor: Colors.background,
+          borderTopWidth: 1,
+          borderTopColor: Colors.border,
+          paddingBottom: 8,
+          paddingTop: 8,
+          height: 65,
+        },
+        tabBarLabelStyle: {
+          fontSize: FontSize.xs,
+          fontWeight: '600',
+        },
       }}
     >
       <Tabs.Screen
@@ -34,12 +44,39 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? 'home' : 'home-outline'}
-              size={22}
+              size={26}
               color={color}
             />
           ),
         }}
       />
+      <Tabs.Screen
+        name="vto"
+        options={{
+          title: 'Try-On',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? 'sparkles' : 'sparkles-outline'}
+              size={26}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="wardrobe"
+        options={{
+          title: 'Wardrobe',
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? 'shirt' : 'shirt-outline'}
+              size={26}
+              color={color}
+            />
+          ),
+        }}
+      />
+      {/* Hidden screens - not shown in tab bar */}
       <Tabs.Screen
         name="scan"
         options={{
@@ -59,29 +96,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="wardrobe"
-        options={{
-          title: 'Wardrobe',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? 'shirt' : 'shirt-outline'}
-              size={22}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="profile"
         options={{
-          title: 'Profile',
-          tabBarIcon: ({ color, focused }) => (
-            <Ionicons
-              name={focused ? 'person' : 'person-outline'}
-              size={22}
-              color={color}
-            />
-          ),
+          href: null,
         }}
       />
       <Tabs.Screen
@@ -94,31 +111,4 @@ export default function TabLayout() {
   );
 }
 
-const styles = StyleSheet.create({
-  tabBar: {
-    backgroundColor: Colors.white,
-    borderTopWidth: 1,
-    borderTopColor: Colors.border,
-    height: 80,
-    paddingBottom: 6,
-    paddingTop: 6,
-  },
-  tabBarLabel: {
-    fontSize: 11,
-    fontWeight: '500',
-  },
-  scanButton: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: Colors.primary,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: -16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-});
+// Styles removed as we're using custom FloatingTabBar component

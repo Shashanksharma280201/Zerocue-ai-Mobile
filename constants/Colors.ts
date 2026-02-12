@@ -1,5 +1,103 @@
-// ZeroCue Brand Colors - From Landing Page
+// ZeroCue Refined Design System - Minimal & Sophisticated
 export const Colors = {
+  // Light Theme - Clean & Elegant
+  light: {
+    // Base Palette - Carefully curated flat colors
+    background: '#FAFBFC',      // Soft white with hint of blue
+    surface: '#FFFFFF',         // Pure white for cards
+    elevated: '#FFFFFF',        // Clean elevated surfaces
+    overlay: 'rgba(0, 0, 0, 0.04)', // Very subtle overlay
+
+    // Text Hierarchy - Better contrast
+    text: {
+      primary: '#1F2937',       // Charcoal gray
+      secondary: '#6B7280',     // Medium gray
+      tertiary: '#9CA3AF',      // Light gray
+      disabled: '#D1D5DB',      // Very light gray
+      inverse: '#FFFFFF',       // White
+    },
+
+    // Primary Colors - Sophisticated palette
+    primary: '#5B21B6',         // Deep purple (more elegant than bright purple)
+    primaryLight: '#7C3AED',    // Light purple
+    primaryDark: '#4C1D95',     // Dark purple
+
+    // Accent Colors - Refined selection
+    accent: '#14B8A6',          // Teal (modern, professional)
+    accentLight: '#2DD4BF',    // Light teal
+    accentDark: '#0F766E',     // Dark teal
+
+    // Semantic Colors - Softer, more refined
+    success: '#059669',         // Forest green
+    warning: '#D97706',         // Amber
+    error: '#DC2626',           // True red
+    info: '#2563EB',           // Royal blue
+
+    // Neutral Grays - For borders and backgrounds
+    neutral: {
+      50: '#F9FAFB',
+      100: '#F3F4F6',
+      200: '#E5E7EB',
+      300: '#D1D5DB',
+      400: '#9CA3AF',
+      500: '#6B7280',
+      600: '#4B5563',
+      700: '#374151',
+      800: '#1F2937',
+      900: '#111827',
+    },
+  },
+
+  // Dark Theme - Elegant Dark Mode
+  dark: {
+    background: '#0F111A',      // Deep blue-black
+    surface: '#1A1D29',         // Slightly lighter surface
+    elevated: '#1F2332',        // Elevated surface
+    overlay: 'rgba(255, 255, 255, 0.04)',
+
+    text: {
+      primary: '#F9FAFB',       // Almost white
+      secondary: '#D1D5DB',     // Light gray
+      tertiary: '#9CA3AF',      // Medium gray
+      disabled: '#6B7280',      // Dark gray
+      inverse: '#1F2937',       // Dark
+    },
+
+    primary: '#8B5CF6',         // Lighter purple for dark mode
+    primaryLight: '#A78BFA',
+    primaryDark: '#6D28D9',
+
+    accent: '#2DD4BF',          // Brighter teal for dark mode
+    accentLight: '#5EEAD4',
+    accentDark: '#14B8A6',
+
+    success: '#10B981',
+    warning: '#F59E0B',
+    error: '#EF4444',
+    info: '#3B82F6',
+
+    neutral: {
+      50: '#18202F',
+      100: '#1F2937',
+      200: '#374151',
+      300: '#4B5563',
+      400: '#6B7280',
+      500: '#9CA3AF',
+      600: '#D1D5DB',
+      700: '#E5E7EB',
+      800: '#F3F4F6',
+      900: '#F9FAFB',
+    },
+  },
+
+  // Minimalist Effects (no heavy glass/blur)
+  effects: {
+    subtleOverlay: 'rgba(0, 0, 0, 0.02)',
+    lightOverlay: 'rgba(255, 255, 255, 0.05)',
+    borderLight: 'rgba(0, 0, 0, 0.06)',
+    borderDark: 'rgba(255, 255, 255, 0.08)',
+  },
+
   // Cream Palette (Backgrounds & Neutrals)
   cream: {
     50: '#FDFCFB',
@@ -219,26 +317,46 @@ export const Typography = {
   },
 };
 
+// Minimal Shadow System - Subtle depth without heaviness
 export const Shadows = {
-  small: {
+  // Extra small - barely visible, for slight elevation
+  xs: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
+    shadowOpacity: 0.02,
+    shadowRadius: 1,
     elevation: 1,
   },
-  medium: {
+  // Small - for cards and buttons
+  sm: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.03,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  // Medium - for modals and elevated elements
+  md: {
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
+    shadowOpacity: 0.04,
+    shadowRadius: 4,
     elevation: 3,
   },
-  large: {
+  // Large - for floating action buttons
+  lg: {
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 16,
-    elevation: 8,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  // None - completely flat
+  none: {
+    shadowColor: 'transparent',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
   },
 };

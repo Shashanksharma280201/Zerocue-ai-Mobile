@@ -12,7 +12,9 @@
       "distribution": "internal",
       "android": {
         "buildType": "apk",
-        "gradleCommand": ":app:assembleRelease"
+        "gradleCommand": ":app:assembleRelease",
+        "image": "latest",
+        "ndk": "26.1.10909125"
       },
       "env": {
         "NODE_OPTIONS": "--max-old-space-size=4096",

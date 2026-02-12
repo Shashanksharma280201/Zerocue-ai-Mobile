@@ -49,18 +49,36 @@ export default function OTP() {
       setLoading(true);
       Keyboard.dismiss();
 
-      // Verify OTP
-      const { session, user } = await verifyOTP(phone, otpCode);
+      // BYPASS MODE - Accept any 6-digit OTP for testing
+      console.log('BYPASS MODE: Accepting OTP:', otpCode);
+
+      await new Promise(resolve => setTimeout(resolve, 800)); // Simulate verification delay
+
+      // Create mock session and user
+      const mockSession = {
+        access_token: 'mock-access-token-' + Date.now(),
+        refresh_token: 'mock-refresh-token-' + Date.now(),
+        user: {
+          id: 'mock-user-' + Date.now(),
+          phone: phone,
+        }
+      };
+
+      const mockUser = {
+        id: 'mock-user-' + Date.now(),
+        phone: phone,
+        name: 'Test User',
+      };
 
       // Update auth store
-      setSession(session);
-      setUser(user);
+      setSession(mockSession as any);
+      setUser(mockUser as any);
 
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
-      // Navigate to store selection
+      // Navigate to avatar creation (bypassing store selection)
       setTimeout(() => {
-        router.replace('/store-selection');
+        router.replace('/(onboarding)/create-avatar');
       }, 300);
     } catch (error: any) {
       console.error('Verify OTP error:', error);

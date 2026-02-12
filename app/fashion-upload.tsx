@@ -8,18 +8,39 @@ import {
   Alert,
   ScrollView,
   ActivityIndicator,
-  Animated,
+  Dimensions,
+  Platform,
 } from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+  withTiming,
+  withSequence,
+  withDelay,
+  interpolate,
+  Extrapolate,
+  runOnJS,
+  FadeIn,
+  FadeOut,
+  SlideInDown,
+} from 'react-native-reanimated';
+import { LinearGradient } from 'expo-linear-gradient';
+import { BlurView } from 'expo-blur';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 
+import { AnimatedCard } from '../components/animated/AnimatedCard';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Colors, Spacing, BorderRadius, Typography } from '../constants/Colors';
 import { imageProcessor } from '../lib/services/imageProcessor';
 import { fashionApi } from '../lib/api/fashion';
 import { useFashionStore } from '../lib/stores/fashionStore';
+import { aiStyleEngine } from '../lib/ai/styleEngine';
+
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const OCCASIONS = [
   { id: 'casual', label: 'Casual', icon: 'cafe-outline' },
@@ -38,34 +59,36 @@ export default function FashionUploadScreen() {
 
   const { setUploadState, incrementStat } = useFashionStore();
 
-  // Animation values
-  const imageScaleAnim = useRef(new Animated.Value(0)).current;
-  const occasionFadeAnim = useRef(new Animated.Value(0)).current;
+  // Animation values using Reanimated 2+
+  const imageScaleAnim = useSharedValue(0);
+  const occasionFadeAnim = useSharedValue(0);
+
+  // Animated styles
+  const imageAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: imageScaleAnim.value }],
+  }));
+
+  const occasionAnimatedStyle = useAnimatedStyle(() => ({
+    opacity: occasionFadeAnim.value,
+  }));
 
   // Trigger animations when image is selected
   useEffect(() => {
     if (imageUri) {
       // Image scale-in animation
-      imageScaleAnim.setValue(0);
-      Animated.spring(imageScaleAnim, {
-        toValue: 1,
-        tension: 40,
-        friction: 7,
-        useNativeDriver: true,
-      }).start();
+      imageScaleAnim.value = 0;
+      imageScaleAnim.value = withSpring(1, {
+        damping: 15,
+        stiffness: 400,
+      });
 
       // Occasion selector fade-in
-      occasionFadeAnim.setValue(0);
-      Animated.timing(occasionFadeAnim, {
-        toValue: 1,
-        duration: 400,
-        delay: 200,
-        useNativeDriver: true,
-      }).start();
+      occasionFadeAnim.value = 0;
+      occasionFadeAnim.value = withDelay(200, withTiming(1, { duration: 400 }));
 
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     } else {
-      occasionFadeAnim.setValue(0);
+      occasionFadeAnim.value = 0;
     }
   }, [imageUri]);
 
@@ -182,11 +205,7 @@ export default function FashionUploadScreen() {
 
         {/* Image Preview */}
         {imageUri ? (
-          <Animated.View
-            style={{
-              transform: [{ scale: imageScaleAnim }],
-            }}
-          >
+          <Animated.View style={imageAnimatedStyle}>
             <Card style={styles.imagePreviewCard} padding={0}>
               <Image
                 source={{ uri: imageUri }}
@@ -237,11 +256,7 @@ export default function FashionUploadScreen() {
 
         {/* Occasion Selector */}
         {imageUri && (
-          <Animated.View
-            style={{
-              opacity: occasionFadeAnim,
-            }}
-          >
+          <Animated.View style={occasionAnimatedStyle}>
             <Card style={styles.occasionCard}>
               <Text style={styles.occasionTitle}>Select Occasion (Optional)</Text>
               <View style={styles.occasionGrid}>

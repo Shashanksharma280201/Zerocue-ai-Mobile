@@ -27,8 +27,10 @@ export default function Phone() {
       setLoading(true);
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
-      // Send OTP
-      await sendOTP(phone);
+      // BYPASS MODE - Skip OTP sending for testing
+      console.log('BYPASS MODE: Skipping OTP send for phone:', phone);
+
+      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
 
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
