@@ -15,7 +15,7 @@ import type {
 } from '../types/fashion';
 
 // API Configuration
-const FASHION_API_BASE_URL = process.env.EXPO_PUBLIC_FASHION_API_URL || 'http://localhost:8000/v1';
+const FASHION_API_BASE_URL = process.env.EXPO_PUBLIC_FASHION_API_URL || 'http://143.110.255.182/v1';
 const CACHE_EXPIRY = 5 * 60 * 1000; // 5 minutes
 const USE_MOCK_DATA = false; // Backend is in mock mode now, so mobile app will get mock data from server
 
